@@ -1,3 +1,4 @@
+#Натуральные числа. Для каждого числа вывести используемые цифры (прописью) и их количество
 with open('fileint.txt', 'r') as file:
     content = file.read()
     numbers = content.split()
