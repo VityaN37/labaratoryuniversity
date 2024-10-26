@@ -6,8 +6,9 @@ with open('fileint.txt', 'r') as file:
 for number in numbers:
     if number.isdigit():  # verification natural numbers
         print(f"Число: {number}")
-        digit_count = len(number) #digit count
-        print(f"Цифры числа: {' '.join(number)}")  #split number
+        digit_count = {} #digit count
+        for i in number:
+            digit_count[i] = digit_count.get(i, 0) + 1
         print(f"Количество цифр: {digit_count}")
     else:
         print(f"{number} не является натуральным числом.")
