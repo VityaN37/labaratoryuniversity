@@ -31,7 +31,7 @@ def algorithmically(position):
 algorithmically(0)
 
 
-def seating_arrangements(num_vagons1, num_passengers): 
+def seating_arrangements(num_vagons1, num_passengers):
     # Получаем все возможные комбинации вагонов
     vagons = range(1, num_vagons1 + 1)
     all_combinations = combinations(vagons, num_passengers)
