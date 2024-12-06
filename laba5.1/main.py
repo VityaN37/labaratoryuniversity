@@ -14,19 +14,27 @@ print(F(n))
 
 
 def A(n,fact):
+
     if n==0 or n==1:
         return 1
-    for i in range(2, 2*n + 1):
-        fact *= i
+    result = 0
+    F_1 = 1
+    F_2 = 1
 
-    return (-1)**n * (F(n-1) + 2 * F(n-2) / fact)
 
-print(A(n,1))
+    for i in range(2,n + 1):
+        fact=fact*(2*i)*((2*i)-1)
+        result=(-1)**i * (F_1 + 2 * F_2 /fact)
+        F_2=F_1
+        F_1=result
+    return result
 
-time_func1 = timeit.timeit(lambda: A(5,1), number=1)
+print(A(n,2))
+
+time_func1 = timeit.timeit(lambda: A(n,2), number=1)
 print("algorithmically")
 print(time_func1)
-time_func2 = timeit.timeit(lambda: F(5), number=1)
+time_func2 = timeit.timeit(lambda: F(n), number=1)
 print("function")
 print(time_func2)
 

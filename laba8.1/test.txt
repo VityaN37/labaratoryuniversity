@@ -1,0 +1,6 @@
+9000,nagerо,David
+25000,ag,Johnson
+8000,nage,Johnson
+9000,nager,Bob
+100,nager,Bob
+90000,nagerл,Bob

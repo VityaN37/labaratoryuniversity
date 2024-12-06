@@ -1,43 +1,26 @@
 from itertools import combinations, permutations
 from tkinter import *
-from tkinter import ttk
-import tkinter as tk
-import timeit
-num_vagons=[]
-
-root = Tk()
-
-root.title("Train")
-root.geometry("250x200")
-
-label = ttk.Label(text="Введите количество пассажиров по заданию")
-label.pack()
-
-entry= ttk.Entry()
-entry.pack(anchor=NW, padx=8, pady=8)
-
-
-
-count_vagon=9#int(input())
-
-for i in range(count_vagon+1):
-    num_vagons.append(i)
-
-new_vagon=[]
-for i in num_vagons:
-    if i %2 !=0:
-        new_vagon.append(i)
-print(new_vagon)
-
+from tkinter import scrolledtext
+from tkinter.scrolledtext import ScrolledText
 
 
 def seating_arrangements():
     # Получаем все возможные комбинации вагонов
-    e = entry.get()
-    num_passengers=int(e)
-    new_vagon=[1,3,5,7,9]
+    num_passengers = int(entry.get())
+    num_vagons = []
+    count_vagon=0
+    count_vagon =int(entry_1.get())
+
+    for i in range(count_vagon + 1):
+        num_vagons.append(i)
+
+    new_vagon = []
+    for i in num_vagons:
+        if i % 2 != 0:
+            new_vagon.append(i)
 
     all_combinations = combinations(new_vagon, num_passengers)
+    result_max = 0
 
     # Для каждой комбинации вагонов генерируем перестановки пассажиров
     arrangements = []
@@ -47,22 +30,50 @@ def seating_arrangements():
 
     # Печатаем результаты
     for vagons, passengers in arrangements:
-        print(f"Вагоны: {vagons}, Пассажиры: {passengers}")
-    print(len(arrangements))
+        result = 0
+        result = passengers[0] * vagons[0]+passengers[1] * vagons[1]+passengers[2] * vagons[2]+passengers[3] * vagons[3]
+        if result > result_max:
+            h=[]
+            h.append((vagons,passengers))
+            result_max = result
+    for vagons, passengers in h:
+        text.insert(1.0,f"\nВагоны: {vagons}, Пассажиры: {passengers}\n")
+    text.insert(1.0,f"\nСамая большая сумма: {result_max}")
     return arrangements
 
+root = Tk()
+
+root.title("Tkinter")
+root.geometry("500x300")
+root.resizable(width=False,height=False)
+label = Label(text="Введите количество пассажиров по заданию", font=("Arial",12))
+label.pack()
+label.place(x=1, y=1)
+label_3 = Label(text="Введите количество вагонов по заданию",font=("Arial",12))
+label_3.pack()
+label_3.place(x=1, y=30)
+
+entry= Entry()
+entry.pack()
+entry.place(x=340,y=3)
+entry_1= Entry()
+entry_1.pack()
+entry_1.place(x=340,y=30)
+btn = Button(text="Начать подсчёт", command=seating_arrangements)
+btn.pack()
+btn.place(x=200, y=80)
 
 
-
-#time_func2 = timeit.timeit(lambda: seating_arrangements(num_vagons1, num_passengers), number=1)
-#print("function")
-#print(time_func2)
+text =ScrolledText(root,width=70,height=10)
+text.pack(side=BOTTOM)
 
 
-btn = ttk.Button(text="Click", command=seating_arrangements(new_vagon))
-btn.pack(anchor=N, padx=6, pady=6)
-
-
+label_1=Label(background="white")
+label_1.pack()
+label_1.place(x=5, y=140)
+label_2 = Label(background="white")
+label_2.pack()
+label_2.place(x=5, y=160)
 
 root.mainloop()
 
