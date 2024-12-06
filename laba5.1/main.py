@@ -14,19 +14,15 @@ print(F(n))
 
 
 def A(n,fact):
-
     if n==0 or n==1:
         return 1
-    result = 0
-    F_1 = 1
-    F_2 = 1
-
-
+    F_2,F_1,p ,result= 1 , 1 ,1,0
     for i in range(2,n + 1):
         fact=fact*(2*i)*((2*i)-1)
-        result=(-1)**i * (F_1 + 2 * F_2 /fact)
+        result=p * (F_1 + 2 * F_2 /fact)
         F_2=F_1
         F_1=result
+        p*=-1
     return result
 
 print(A(n,2))
